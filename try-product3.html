@@ -130,6 +130,49 @@
             color: #fff;
             text-align: center;
         }
+        .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content h3, .modal-content p {
+    margin: 0.5rem 0;
+}
+#btn {
+            background-color: #f1c40f;
+            color: #333;
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -145,10 +188,32 @@
                 <a href="index.html">Shop</a>
                 <a href="#">About</a>
                 <a href="3">Contact</a>
-                <a><img style="margin: -10px;" onclick="toggleCartModal()" src="images-removebg-preview (11).png" alt="cart" width="30px"></a>
+                <a><img style="margin: -10px;cursor: pointer;" onclick="toggleCartModal()" src="images-removebg-preview (11).png" alt="cart" width="30px"></a>
             </nav><br>
         </div>
     </header><br>
+
+     <!-- Cart Modal -->
+ <div id="cart-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="toggleCartModal()">&times;</span>
+        <center>
+            <h3>Your Cart</h3>
+
+        <ul id="cart-items"></ul> <!-- Cart items list -->
+
+        <section id="contact" class="contact-form">
+            <input type="text" placeholder="Your Name" required><br>
+            <textarea rows="4" placeholder="Address"></textarea>
+        </section>
+        </center>
+
+        <center>
+            <p>Total Price: $<span id="total-price">0.00</span></p>
+            <button id="btn" onclick="checkout()">Checkout</button>
+        </center>
+    </div>
+</div>
 
 
    <center>
@@ -166,6 +231,7 @@
             <img src="t-shirt2/A7_IB8273_ONE__A701_ONE__101__05-removebg-preview.png" alt="Product Image 4" onclick="switchImage('t-shirt2/A7_IB8273_ONE__A701_ONE__101__05-removebg-preview.png')">
         </div>
     </div>
+    <center><button id="btn" onclick="addToCart('Black t-shirt', 5.00)">Add to Cart</button></center><br><br><br>
    </center>
    <section id="contact1" class="contact-form1">
     <marquee ><pre style="font-size: 20px;">&copy; GBf - Services       &copy; GBf - Services           &copy; GBf - Services         &copy; GBf - Services         &copy; GBf - Services</pre></marquee>
