@@ -38,6 +38,7 @@ function addToCart(productName, price) {
     updateCartDisplay();
 }
 
+
 function updateCartDisplay() {
     const cartItemsList = document.getElementById("cart-items");
     const totalPriceDisplay = document.getElementById("total-price");
@@ -85,19 +86,27 @@ window.onclick = function(event) {
         return;
     }
 
-    // Generate a summary message of the cart
-    let message = "Order Summary:\n";
-    cart.forEach((item, index) => {
-        message += `${index + 1}. ${item.name} - $${item.price.toFixed(2)}\n`;
-    });
-    message += `Total: $${totalPrice.toFixed(2)}\nThank you for your purchase!`;
+    const name = document.querySelector(".contact-form input[type='text']").value;
+    const userMessage = document.querySelector(".contact-form textarea").value;
+    const userNmbr = document.querySelector(".contact-form input[type='tel']").value;
 
-    // Encode the message for URL
+    if (!name || !userMessage) {
+        alert("Please fill out your name and message in the contact form.");
+        return;
+    }
+
+    let message = `Order Details:\n\nName: ${name}\nMessage:  ${userMessage} \nnumber:${userNmbr} :\n\nItems:\n`;
+
+    cart.forEach((item, index) => {
+        message += `${index + 1}. ${item.name} - $${item.price.toFixed(2)} \n`;
+    });
+
+    message += `\nTotal: $${totalPrice.toFixed(2)}\nThank you for your purchase!`;
+
     const encodedMessage = encodeURIComponent(message);
-    const phoneNumber = "YOUR_PHONE_NUMBER"; // Replace with your WhatsApp number (e.g., "1234567890")
+    const phoneNumber = "96103226752";
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-    // Open WhatsApp with the pre-filled message
     window.open(whatsappURL, "_blank");
 
     // Clear the cart after sending the message
